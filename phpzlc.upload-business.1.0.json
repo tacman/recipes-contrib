@@ -1,0 +1,21 @@
+{
+    "manifests": {
+        "phpzlc/upload-business": {
+            "manifest": {
+                "copy-from-package": {
+                    "routing/": "config/routing/",
+                    "Business/": "src/Business/",
+                    "Controller/": "src/Controller/",
+                    "public/": "public/",
+                    "Document/": "src/Document/"
+                },
+                "gitignore": [
+                    "/public/upload/*",
+                    "!/public/upload/.gitignore"
+                ]
+            },
+            "files": [],
+            "ref": "b7391f5ce11c546960c7018504af692e8cc2c848"
+        }
+    }
+}
