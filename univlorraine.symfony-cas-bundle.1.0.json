@@ -1,0 +1,18 @@
+{
+    "manifests": {
+        "univlorraine/symfony-cas-bundle": {
+            "manifest": {
+                "bundles": {
+                    "UnivLorraine\\Bundle\\SymfonyCasBundle\\UnivLorraineSymfonyCasBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-package": {
+                    "Resources/config/": "%CONFIG_DIR%/"
+                }
+            },
+            "files": [],
+            "ref": "653d73ccfbf9c11672e9ff50fa610ce60a2c2840"
+        }
+    }
+}
