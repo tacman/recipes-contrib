@@ -1,0 +1,145 @@
+{
+    "manifests": {
+        "eduandebruijne/admin-bundle": {
+            "manifest": {
+                "bundles": {
+                    "EDB\\AdminBundle\\EDBAdminBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/",
+                    "src/": "%SRC_DIR%/"
+                },
+                "composer-scripts": {
+                    "assets:install %PUBLIC_DIR%": "symfony-cmd",
+                    "cache:clear": "symfony-cmd"
+                },
+                "env": {
+                    "ADMIN_PATH": "admin",
+                    "MEDIA_PATH": "/",
+                    "GOOGLE_CLIENT_ID": "",
+                    "GOOGLE_CLIENT_SECRET": ""
+                }
+            },
+            "files": {
+                "config/packages/edb_admin.yaml": {
+                    "contents": [
+                        "edb_admin:",
+                        "    admin_icon: \"code\" # See https://fontawesome.com/v5/search?s=solid",
+                        "    admin_title: \"Admin\"",
+                        "    source_prefix: \"media_source\"",
+                        "    cache_prefix: \"media_cache\"",
+                        "    media_class: App\\Entity\\Media",
+                        "    user_class: App\\Entity\\User",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "config/routes/edb_admin.yaml": {
+                    "contents": [
+                        "edb_dynamic:",
+                        "    resource: .",
+                        "    type: admin",
+                        "    prefix: '%edb_admin_path%'",
+                        "",
+                        "edb_admin:",
+                        "    resource: '@EDBAdminBundle/Resources/config/routes.yaml'",
+                        "    prefix: '%edb_admin_path%'",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "src/Admin/MediaAdmin.php": {
+                    "contents": [
+                        "<?php",
+                        "",
+                        "declare(strict_types=1);",
+                        "",
+                        "namespace App\\Admin;",
+                        "",
+                        "use App\\Entity\\Media;",
+                        "use EDB\\AdminBundle\\Admin\\AbstractMediaAdmin;",
+                        "",
+                        "class MediaAdmin extends AbstractMediaAdmin",
+                        "{",
+                        "    public function getEntityClass(): string",
+                        "    {",
+                        "        return Media::class;",
+                        "    }",
+                        "}",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "src/Admin/UserAdmin.php": {
+                    "contents": [
+                        "<?php",
+                        "",
+                        "declare(strict_types=1);",
+                        "",
+                        "namespace App\\Admin;",
+                        "",
+                        "use App\\Entity\\User;",
+                        "use EDB\\AdminBundle\\Admin\\AbstractUserAdmin;",
+                        "",
+                        "class UserAdmin extends AbstractUserAdmin",
+                        "{",
+                        "    public function getEntityClass(): string",
+                        "    {",
+                        "        return User::class;",
+                        "    }",
+                        "}",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "src/Entity/Media.php": {
+                    "contents": [
+                        "<?php",
+                        "",
+                        "declare(strict_types=1);",
+                        "",
+                        "namespace App\\Entity;",
+                        "",
+                        "use Doctrine\\ORM\\Mapping as ORM;",
+                        "use EDB\\AdminBundle\\Entity\\AbstractMedia;",
+                        "",
+                        "/**",
+                        " * @ORM\\Entity",
+                        " * @ORM\\HasLifecycleCallbacks",
+                        " */",
+                        "class Media extends AbstractMedia",
+                        "{",
+                        "}",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "src/Entity/User.php": {
+                    "contents": [
+                        "<?php",
+                        "",
+                        "declare(strict_types=1);",
+                        "",
+                        "namespace App\\Entity;",
+                        "",
+                        "use Doctrine\\ORM\\Mapping as ORM;",
+                        "use EDB\\AdminBundle\\Entity\\AbstractUser;",
+                        "",
+                        "/**",
+                        " * @ORM\\Entity",
+                        " * @ORM\\HasLifecycleCallbacks",
+                        " */",
+                        "class User extends AbstractUser",
+                        "{",
+                        "}",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "a64e0b95a1d03a6e370da293ad29512aa9faede1"
+        }
+    }
+}
