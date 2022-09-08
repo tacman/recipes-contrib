@@ -1,0 +1,54 @@
+{
+    "manifests": {
+        "phpsword/sword-bundle": {
+            "manifest": {
+                "bundles": {
+                    "Sword\\SwordBundle\\SwordBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "copy-from-package": {
+                    "install/bin/console": "%BIN_DIR%/console",
+                    "install/wp/wp-config.php": "wp/wp-config.php",
+                    "install/docker/": "docker/",
+                    "install/docker-compose.yml": "docker-compose.yml",
+                    "install/docker-compose.prod.yml": "docker-compose.prod.yml",
+                    "install/Makefile": "Makefile"
+                },
+                "gitignore": [
+                    "/wp/*",
+                    "!wp/wp-config.php",
+                    "!wp/content",
+                    "wp/content/*",
+                    "!wp/content/themes",
+                    "wp/content/themes/twenty*"
+                ],
+                "post-install-output": [
+                    "  * <fg=blue>Read</> the documentation at <comment>https://getsword.com</>"
+                ]
+            },
+            "files": {
+                "config/packages/sword.yaml": {
+                    "contents": [
+                        "sword:",
+                        "    child_theme_translation_domain: 'mychildtheme'",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "config/routes/sword.yaml": {
+                    "contents": [
+                        "sword:",
+                        "    resource: '@SwordBundle/config/routing.yaml'",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "caa1f9769a01215164853c51c652afc3c644a75b"
+        }
+    }
+}
